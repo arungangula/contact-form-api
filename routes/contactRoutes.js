@@ -1,6 +1,7 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
-const { body, validationResult } = require('express-validator');
+const { body } = require('express-validator');
+const { sendContactEmail } = require('../controllers/contactController')
 
 const router = express.Router();
 
@@ -17,12 +18,6 @@ router.post('/', limiter, [
     body('email').isEmail().withMessage('Valid Email is required'),
     body('message').notEmpty().withMessage('Message is Required')
 ],
-    (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({errors: errors.array()});
-        }
-        res.json({"msg": "Hello world"});
-    }
+    sendContactEmail
 );
 module.exports = router;
