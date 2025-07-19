@@ -6,7 +6,7 @@ const { sendContactEmail } = require('../controllers/contactController')
 const router = express.Router();
 
 const limiter = rateLimit({
-    windowMs: 1 * 60 * 60, //Hour
+    windowMs: 1000 * 60 * 60, //Hour
     max: 5,
     message: {
         error: 'Too many submissions, Try again later'
