@@ -20,7 +20,7 @@ exports.sendContactEmail = async (req, res) => {
 
         await transporter.sendMail({
             from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_USER}>`,
-            to: `${name} <${email}>`,
+            to: `${process.env.EMAIL_NAME} <${process.env.EMAIL_USER}>`,
             subject: 'New Contact Form Message',
             text: message,
             html: `<p><strong>From: </strong> ${name} ${email}</p><br/>
